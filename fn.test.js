@@ -1,4 +1,4 @@
-const fn = require('./fn');
+// const fn = require('./fn');
 
 // test('1은 1이야.', () => {
 //     expect(1).toBe(1);
@@ -117,26 +117,150 @@ const fn = require('./fn');
 // })
 
 
-// 테스트 전후 작업
-let num = 0;
+// // 테스트 전후 작업
+// let num = 0;
 
-beforeEach(() => {
-    num = 0;
-}) //이게 있어서 테스트 실행 전 num을 0으로 초기화해줌
+// beforeEach(() => {
+//     num = 0;
+// }) //이게 있어서 테스트 실행 전 num을 0으로 초기화해줌
 
-test('0 더하기 1은 1이야', () => { // 1
-    num = fn.add(num, 1);
-    expect(num).toBe(1);
-})
-test('0 더하기 2은 2이야', () => { // 3
-    num = fn.add(num, 2);
-    expect(num).toBe(2);
-})
-test('0 더하기 3은 3이야', () => { //6
-    num = fn.add(num, 3);
-    expect(num).toBe(3);
-})
-test('0 더하기 4은 4이야', () => { //10
-    num = fn.add(num, 4);
-    expect(num).toBe(4);
-})
+// test('0 더하기 1은 1이야', () => { // 1
+//     num = fn.add(num, 1);
+//     expect(num).toBe(1);
+// })
+// test('0 더하기 2은 2이야', () => { // 3
+//     num = fn.add(num, 2);
+//     expect(num).toBe(2);
+// })
+// test('0 더하기 3은 3이야', () => { //6
+//     num = fn.add(num, 3);
+//     expect(num).toBe(3);
+// })
+// test('0 더하기 4은 4이야', () => { //10
+//     num = fn.add(num, 4);
+//     expect(num).toBe(4);
+// })
+
+// let user; //beforeAll, afterAll은 모든 테스트 케이스 전 후로 한번 씩만 실행됨
+
+// beforeAll(async () => {
+//     user = await fn.connectUserDb();
+// })
+// afterAll(() => {
+//     return fn.disconnectDb();
+// })
+
+// test('이름은 Mike', () => {
+//     expect(user.name).toBe('Mike');
+// })
+// test('나이은 30', () => {
+//     expect(user.age).toBe(30);
+// })
+
+// describe로 테스트 케이스들을 묶을 수 있음
+
+// describe('Car 관련 작업', () => {
+//     let car;
+
+//     test
+// })
+
+// 외부의 beforeEach는 내부 beforeEach 보다 먼저 실행되고, 외부의 afterEach는 내부 afterEach보다 늦게 실행됨
+
+
+// //test.only('테스트명', () => {
+//     expect(fn.add(num, 5)).toBe(6);
+// }) 여러 케이스 중 test.only 한 케이스만 테스트 실행됨
+
+// test.skip('0 더하기 4은 4', () => {
+//     expect(fn.add(num, 4)).toBe(4);
+//     num = 10;
+// }); //test.skip 하면 테스트를 수행하지 않게 함
+
+// mock function : 테스트 하기 위해 흉내만 내는 함수
+
+// const mockFn = jest.fn();
+
+// mockFn();
+// mockFn(1);
+
+// test('함수는 2번 호출됩니다.', () => {
+//     expect(mockFn.mock.calls.length).toBe(2);
+// });
+// test('2번 째로 호출된 함수에 전달된 첫 번째 인수는 1 입니다.', () => {
+//     expect(mockFn.mock.calls[1][0]).toBe(1);
+// })
+
+// const mockFn = jest.fn();
+
+// mockFn(10);
+// mockFn(20);
+// mockFn(30);
+
+// function forEachAdd1(arr) {
+//     arr.forEach(num => {
+//         mockFn(num + 1);
+//     })
+// }
+
+// forEachAdd1([10, 20, 30]);
+
+// test('함수 호출은 3번 됩니다.', () => {
+//     expect(mockFn.mock.calls.length).toBe(3);
+// })
+
+// test('전달된 값은 11, 21, 31 입니다.', () => {
+//     expect(mockFn.mock.calls[0][0]).toBe(11);
+//     expect(mockFn.mock.calls[1][0]).toBe(21);
+//     expect(mockFn.mock.calls[2][0]).toBe(31);
+// })
+
+// const mockFn = jest.fn(num => num + 1);
+
+// mockFn(10);
+// mockFn(20);
+// mockFn(30);
+
+// test('10에서 1 증가한 값이 반환된다', () => {
+//     expect(mockFn.mock.results[0].value).toBe(11);
+// })
+
+// const mockFn = jest.fn();
+
+// mockFn
+//     .mockReturnValueOnce(10)
+//     .mockReturnValueOnce(20)
+//     .mockReturnValueOnce(30)
+//     .mockReturnValue(40);
+
+// mockFn();
+// mockFn();
+// mockFn();
+// mockFn();
+
+// test('dd', () => {
+//     console.log(mockFn.mock.results);
+//     expect('dd').toBe('dd');
+// })
+
+// const mockFn = jest.fn();
+
+// mockFn
+//     .mockReturnValueOnce(true)
+//     .mockReturnValueOnce(false)
+//     .mockReturnValueOnce(true)
+//     .mockReturnValueOnce(false)
+//     .mockReturnValue(true)
+// const result = [1, 2, 3, 4, 5].filter(num => mockFn(num));
+
+// test('홀수는 1, 3, 5', () => {
+//     expect(result).toStrictEqual([1, 3, 5]);
+// })
+
+// const fn = require('./fn');
+
+// jest.mock('./fn');
+// fn.createUser.mockReturnValue({ name: 'Mike' }); //목함수로 실행됨
+
+// toBeCalled() 한번 이상 호출?
+// toBeCalledTimes(3) 정확히 세 번 호출?

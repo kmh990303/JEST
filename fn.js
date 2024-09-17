@@ -14,14 +14,32 @@ const fn = {
             callback(name);
         }, 3000)
     },
-    getAge: () => {
-        const age = 30;
-        return new Promise((res, rej) => {
+    // getAge: () => {
+    //     const age = 30;
+    //     return new Promise((res, rej) => {
+    //         setTimeout(() => {
+    //             res(age);
+    //         }, 3000);
+    //     })
+    // }
+    connectUserDb: () => {
+        return new Promise(res => {
             setTimeout(() => {
-                res(age);
-            }, 3000);
+                res({
+                    name: "Mike",
+                    age: 30,
+                    gender: "male",
+                });
+            }, 500);
         })
-    }
+    },
+    disconnectDb: () => {
+        return new Promise(res => {
+            setTimeout(() => {
+                res();
+            }, 500);
+        });
+    },
 }
 
 
